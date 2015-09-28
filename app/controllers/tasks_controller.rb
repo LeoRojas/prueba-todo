@@ -9,6 +9,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
   def create
+    #########
     #render plain: params[:task].inspect
     #@task = Task.new(params[:task])
     @task = Task.new(task_params)
