@@ -17,6 +17,12 @@ class TasksControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:tasks)
   end
+  
+  test "should get new" do
+    sign_in User.first
+    get :new
+    assert_response :success
+  end
 
   test "should create task" do
     sign_in User.first
@@ -24,6 +30,24 @@ class TasksControllerTest < ActionController::TestCase
       post :create, task: {title: 'Some title'}
   end
   assert_redirected_to task_path(assigns(:task))
+  end
+
+  test "should show task" do
+    sign_in User.first
+    get :show, id: @task
+    assert_response :success
+  end
+
+  test "should get task" do
+    sign_in User.first
+    get :edit, id: @task
+    assert_response :success
+  end
+  
+  test "should update task" do
+    sign_in User.first
+    patch :update, id: @task, task: { title: @task.title, text: @task.text, done: @task.done }
+    assert_redirected_to task_path(assigns(:task))
   end
 
   test "should destroy task" do

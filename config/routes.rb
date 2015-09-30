@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  #get 'registrations/sign_up_params'
+
+  #get 'registrations/account_update_params'
+
+  #devise_for :users
   get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -7,6 +11,8 @@ Rails.application.routes.draw do
   resources :tasks
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+
+  devise_for :users, :controllers => { registrations: 'registrations' }
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
